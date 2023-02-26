@@ -10,6 +10,9 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.appcheck.debug.testing.DebugAppCheckTestHelper;
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -24,4 +27,25 @@ public class ExampleInstrumentedTest {
         assertEquals("com.anusha.coffee", appContext.getPackageName());
 
     }
+    public class YourTests {
+        private final DebugAppCheckTestHelper debugAppCheckTestHelper =
+                DebugAppCheckTestHelper.fromInstrumentationArgs();
+
+        @Test
+        public void testWithDefaultApp() {
+            debugAppCheckTestHelper.withDebugProvider(() -> {
+                // Test code that requires a debug AppCheckToken.
+            });
+        }
+
+        @Test
+        public void testWithNonDefaultApp() {
+            debugAppCheckTestHelper.withDebugProvider(
+                    FirebaseApp.getInstance("nonDefaultApp"),
+                    () -> {
+                        // Test code that requires a debug AppCheckToken.
+                    });
+        }
+    }
+
 }
