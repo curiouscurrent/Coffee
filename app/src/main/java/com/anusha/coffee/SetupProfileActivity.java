@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory;
+import com.google.firebase.appcheck.debug.internal.DebugAppCheckProvider;
 import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -47,11 +48,7 @@ public class SetupProfileActivity extends AppCompatActivity {
     Uri selectedImage;
     ProgressDialog dialog;
 
-    private void initFirebase() {
-        FirebaseApp.initializeApp(this);
-        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
-        firebaseAppCheck.installAppCheckProviderFactory(DebugAppCheckProviderFactory.getInstance());
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +57,10 @@ public class SetupProfileActivity extends AppCompatActivity {
         binding = ActivitySetupProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+            FirebaseApp.initializeApp(this);
+            FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+            firebaseAppCheck.installAppCheckProviderFactory(DebugAppCheckProviderFactory.getInstance());
 
 
 
@@ -110,7 +111,7 @@ public class SetupProfileActivity extends AppCompatActivity {
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void unused) {
-                                                        Intent intent = new Intent(SetupProfileActivity.this, UserActivity.class);
+                                                        Intent intent = new Intent(SetupProfileActivity.this, MainActivity.class);
                                                         startActivity(intent);
                                                         finish();
                                                     }

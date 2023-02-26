@@ -18,8 +18,12 @@ import com.google.firebase.appcheck.debug.testing.DebugAppCheckTestHelper;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+
+
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
+
     @Test
     public void useAppContext() {
         // Context of the app under test.
@@ -27,25 +31,7 @@ public class ExampleInstrumentedTest {
         assertEquals("com.anusha.coffee", appContext.getPackageName());
 
     }
-    public class YourTests {
-        private final DebugAppCheckTestHelper debugAppCheckTestHelper =
-                DebugAppCheckTestHelper.fromInstrumentationArgs();
 
-        @Test
-        public void testWithDefaultApp() {
-            debugAppCheckTestHelper.withDebugProvider(() -> {
-                // Test code that requires a debug AppCheckToken.
-            });
-        }
-
-        @Test
-        public void testWithNonDefaultApp() {
-            debugAppCheckTestHelper.withDebugProvider(
-                    FirebaseApp.getInstance("nonDefaultApp"),
-                    () -> {
-                        // Test code that requires a debug AppCheckToken.
-                    });
-        }
-    }
 
 }
+
