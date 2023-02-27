@@ -47,6 +47,7 @@ public class SetupProfileActivity extends AppCompatActivity {
     Button PickImage;
     Uri selectedImage;
     ProgressDialog dialog;
+//    await FirebaseAuth.instance.signInAnonymously();
 
 
 
@@ -61,12 +62,18 @@ public class SetupProfileActivity extends AppCompatActivity {
             FirebaseApp.initializeApp(this);
             FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
             firebaseAppCheck.installAppCheckProviderFactory(DebugAppCheckProviderFactory.getInstance());
+                
 
+            dialog = new ProgressDialog(this);
+            dialog.setMessage("Updating Profile...");
+            dialog.setCancelable(false);
 
 
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
         auth = FirebaseAuth.getInstance();
+
+
 
         binding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +91,7 @@ public class SetupProfileActivity extends AppCompatActivity {
                     binding.nameBox.setError("Please type a name");
                     return;
                 }
-
+                dialog.show();
 
                 if(selectedImage != null)
                 {
@@ -111,6 +118,7 @@ public class SetupProfileActivity extends AppCompatActivity {
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void unused) {
+                                                        dialog.dismiss();
                                                         Intent intent = new Intent(SetupProfileActivity.this, MainActivity.class);
                                                         startActivity(intent);
                                                         finish();
@@ -121,6 +129,27 @@ public class SetupProfileActivity extends AppCompatActivity {
                             }
                         }
                     });
+                } else {
+
+                    String uid = auth.getUid();
+                    String phone = auth.getCurrentUser().getPhoneNumber();
+
+
+                    User user = new User(uid,name,phone,"No Image");
+
+                    database.getReference()
+                            .child("users")
+                            .child(uid)
+                            .setValue(user)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    dialog.dismiss();
+                                    Intent intent = new Intent(SetupProfileActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
                 }
 
             }

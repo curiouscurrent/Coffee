@@ -66,6 +66,7 @@
                 android:background="@drawable/textbox_outline"
                 android:ems="10"
                 android:hint="Type your phone number"
+                android:inputType="textNoSuggestions"
                 android:minHeight="48dp"
                 android:padding="10dp"
                 android:phoneNumber="true" />

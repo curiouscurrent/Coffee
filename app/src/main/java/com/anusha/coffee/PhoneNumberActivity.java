@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.anusha.coffee.databinding.ActivityPhoneNumberBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PhoneNumberActivity extends AppCompatActivity {
 
     ActivityPhoneNumberBinding binding;
+
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,13 @@ public class PhoneNumberActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         binding.phoneBox.requestFocus();
 
+        auth = FirebaseAuth.getInstance();
+        if(auth.getCurrentUser() != null)
+        {
+            Intent intent = new Intent(PhoneNumberActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         binding.continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
