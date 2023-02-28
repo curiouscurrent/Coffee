@@ -8,10 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.anusha.coffee.CustomArFragment;
 import com.anusha.coffee.R;
 import com.anusha.coffee.Models.User;
 import com.anusha.coffee.Adapters.UsersAdapter;
 import com.anusha.coffee.databinding.ActivityMainBinding;
+import com.google.ar.sceneform.rendering.ModelRenderable;
+import com.google.ar.sceneform.rendering.Texture;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,10 +25,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ModelRenderable modelRenderable;
+    private Texture texture;
+    private  boolean isAdded = false;
+
     ActivityMainBinding binding;
     FirebaseDatabase database;
     ArrayList<User> users;
     UsersAdapter usersAdapter;
+
+
 
 
 
@@ -34,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
 
         database = FirebaseDatabase.getInstance();
         users = new ArrayList<>();
