@@ -1,4 +1,4 @@
-package com.anusha.coffee;
+package com.anusha.coffee.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,13 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.anusha.coffee.R;
+import com.anusha.coffee.Models.User;
+import com.anusha.coffee.Adapters.UsersAdapter;
 import com.anusha.coffee.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.ArrayList;

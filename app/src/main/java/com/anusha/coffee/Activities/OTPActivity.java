@@ -1,4 +1,4 @@
-package com.anusha.coffee;
+package com.anusha.coffee.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

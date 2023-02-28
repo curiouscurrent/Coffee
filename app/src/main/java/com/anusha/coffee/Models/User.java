@@ -1,4 +1,4 @@
-package com.anusha.coffee;
+package com.anusha.coffee.Models;
 
 public class User {
 
