@@ -51,6 +51,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
                 context.startActivity(intent);
             }
         });
+
+
     }
 
     @Override
@@ -68,4 +70,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
             binding = RowConversationBinding.bind(itemView);
         }
     }
+
+
 }
